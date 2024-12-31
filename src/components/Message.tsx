@@ -37,7 +37,7 @@ export default function Message({ message, isOwnMessage }: MessageProps) {
       console.error('Decryption error:', error);
       setDecryptionStatus('error');
     }
-  }, [message]);
+  }, [message, decryptionStatus]);
 
   useEffect(() => {
     decryptMessage();

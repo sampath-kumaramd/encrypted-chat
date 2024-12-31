@@ -38,9 +38,9 @@ export default function AuthPage() {
         await signin(email, password);
       }
       router.push("/chat");
-      // 
-    } catch (err : any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      const errorMessage = err instanceof Error ? err.message : 'An error occurred';
+      setError(errorMessage);
     }
   };
 

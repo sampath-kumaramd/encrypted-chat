@@ -29,7 +29,8 @@ export default function ChatPage() {
   useEffect(() => {
     const initializeEncryption = async () => {
       try {
-        const encryptionService = new EncryptionService();
+          const encryptionService = new EncryptionService();
+          
         
         // Initialize with a temporary password (in production, this should come from user input)
         await encryptionService.initializeFromStoredKeys("your-secure-password");
@@ -37,7 +38,9 @@ export default function ChatPage() {
         const isValid = await encryptionService.verifyKeyPair();
         if (!isValid) {
           // If verification fails, generate new keys
-          const { publicKey } = await encryptionService.initializeKeyPair();
+            const { publicKey } = await encryptionService.initializeKeyPair();
+            
+            console.log("New encryption keys generated" , publicKey);
           // Here you would typically save the public key to your user's profile in the database
           console.log('New encryption keys generated');
         }
@@ -74,7 +77,8 @@ export default function ChatPage() {
       );
       setNewMessage('');
     } catch (error) {
-      console.error('Error sending message:', error);
+        console.error('Error sending message:', error);
+        console.log("isEncryptionReady" , isEncryptionReady);
       alert('Failed to send message');
     }
   };
